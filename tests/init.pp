@@ -1,4 +1,4 @@
 class { 'sphinx':
-  config  => '/var/www/app/etc/sphinx.conf',
-  cronjob => false,
+  config_file => 'sphinx/sphinx.conf.erb',
+  cronjob     => false,
 }

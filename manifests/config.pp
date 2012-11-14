@@ -9,8 +9,20 @@ class sphinx::config {
   }
 
   file { '/etc/sphinxsearch/sphinx.conf':
-    ensure => link,
-    target => $sphinx::config_file,
+    ensure => present,
+    mode   => '0644',
+    owner  => 'root',
+    group  => 'root',
+  }
+
+  if $config_file =~ /^puppet:\/\// {
+    File['/etc/sphinxsearch/sphinx.conf'] {
+      source => $sphinx::config_file,
+    }
+  } else {
+    File['/etc/sphinxsearch/sphinx.conf'] {
+      content => template($spinx::config_file),
+    }
   }
 
   service { 'sphinxsearch':
