@@ -15,13 +15,13 @@ class sphinx::config {
     group  => 'root',
   }
 
-  if $config_file =~ /^puppet:\/\// {
+  if $sphinx::config_file =~ /^puppet:\/\// {
     File['/etc/sphinxsearch/sphinx.conf'] {
       source => $sphinx::config_file,
     }
   } else {
     File['/etc/sphinxsearch/sphinx.conf'] {
-      content => template($spinx::config_file),
+      content => template($sphinx::config_file),
     }
   }
 
