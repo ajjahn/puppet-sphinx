@@ -1,5 +1,6 @@
 class sphinx::install {
-
-  package { 'sphinxsearch': ensure => present }
-
+  case $operatingsystem {
+    Ubuntu,Debian: { package { 'sphinxsearch': ensure => present } }
+    RedHat,CentOS: { package { 'sphinx': ensure => present } }
+  }
 }

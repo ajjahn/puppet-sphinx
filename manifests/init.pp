@@ -26,12 +26,6 @@ class sphinx (
   $cronjob     = true,
 ) {
 
-  # Compatibility check
-  $compatible = [ 'Debian', 'Ubuntu' ]
-  if ! ($::operatingsystem in $compatible) {
-    fail("Module is not compatible with ${::operatingsystem}")
-  }
-
   Class['sphinx::install'] -> Class['sphinx::config']
 
   include sphinx::install
