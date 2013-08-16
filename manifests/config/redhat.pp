@@ -9,15 +9,15 @@ class sphinx::config::redhat {
     group  => 'root',
   }
 
-  if $sphinx::config_file =~ /^puppet:\/\// {
-    File['/etc/sphinx/sphinx.conf'] {
-      source => $sphinx::config_file,
-    }
-  } else {
-    File['/etc/sphinx/sphinx.conf'] {
-      content => template($sphinx::config_file),
-    }
-  }
+  # if $sphinx::config_file =~ /^puppet:\/\// {
+  #   File['/etc/sphinx/sphinx.conf'] {
+  #     source => $sphinx::config_file,
+  #   }
+  # } else {
+  #   File['/etc/sphinx/sphinx.conf'] {
+  #     content => template($sphinx::config_file),
+  #   }
+  # }
 
   service { 'searchd':
     ensure     => running,
